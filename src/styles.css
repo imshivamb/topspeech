@@ -73,8 +73,9 @@ h1, h2, p { margin-top: 0; }
    SHELL
 ════════════════════════════════════════════════ */
 .shell {
-  min-height: 100dvh;
-  min-height: 100vh;
+  height: 100dvh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -87,12 +88,17 @@ h1, h2, p { margin-top: 0; }
 
 .shell--start {
   align-items: center;
+  overflow: hidden;
 }
 
 .lesson-wrap {
   width: 100%;
   max-width: 430px;
-  padding: 20px 16px 40px;
+  height: 100dvh;
+  height: 100vh;
+  padding: 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ════════════════════════════════════════════════
@@ -101,13 +107,13 @@ h1, h2, p { margin-top: 0; }
 .start-wrap {
   width: 100%;
   max-width: 420px;
-  min-height: 100dvh;
-  min-height: 100vh;
-  padding: 32px 22px 40px;
+  height: 100%;
+  padding: 28px 22px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
+  overflow: hidden;
 }
 
 .brand-chip {
@@ -124,28 +130,29 @@ h1, h2, p { margin-top: 0; }
 
 .start-hero {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 0;
 }
 
 .hero-ring {
-  width: 210px;
-  height: 210px;
+  width: min(200px, 48vw, 38vh);
+  height: min(200px, 48vw, 38vh);
   border-radius: 50%;
   background: rgba(108, 77, 255, 0.07);
   display: grid;
   place-items: center;
   box-shadow:
-    0 0 0 28px rgba(108,77,255,0.05),
-    0 0 0 56px rgba(108,77,255,0.03);
+    0 0 0 24px rgba(108,77,255,0.05),
+    0 0 0 48px rgba(108,77,255,0.03);
   animation: pulseRing 3.2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .hero-core {
-  width: 148px;
-  height: 148px;
+  width: 68%;
+  height: 68%;
   border-radius: 50%;
   background: rgba(108, 77, 255, 0.10);
   display: grid;
@@ -154,7 +161,8 @@ h1, h2, p { margin-top: 0; }
 
 .start-copy {
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
 }
 
 .start-copy h1 {
@@ -177,10 +185,11 @@ h1, h2, p { margin-top: 0; }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink-3);
+  flex-shrink: 0;
 }
 
 .meta-sep {
@@ -278,9 +287,30 @@ h1, h2, p { margin-top: 0; }
 ════════════════════════════════════════════════ */
 .lesson-bar {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.bar-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bar-row {
+  display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
 }
 
 .bar-track {
@@ -317,6 +347,8 @@ h1, h2, p { margin-top: 0; }
    EXERCISE CARD
 ════════════════════════════════════════════════ */
 .exercise-card {
+  flex: 1;
+  min-height: 0;
   background: var(--surface);
   border-radius: var(--r-card);
   box-shadow:
@@ -324,10 +356,11 @@ h1, h2, p { margin-top: 0; }
     0 16px 48px rgba(24, 16, 60, 0.11);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
   padding: 22px;
   animation: cardSlideIn 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: background 280ms ease, box-shadow 280ms ease;
+  overflow: hidden;
 }
 
 /* Feedback tinting — card itself shifts hue */
@@ -480,6 +513,13 @@ h1, h2, p { margin-top: 0; }
 }
 
 /* ════════════════════════════════════════════════
+   CARD FOOTER — always hugs the bottom of the card
+════════════════════════════════════════════════ */
+.card-footer {
+  margin-top: auto;
+}
+
+/* ════════════════════════════════════════════════
    ACTION ROW
 ════════════════════════════════════════════════ */
 .action-row {
@@ -548,14 +588,17 @@ h1, h2, p { margin-top: 0; }
    COMPLETE SCREEN
 ════════════════════════════════════════════════ */
 .complete {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 16px 0 4px;
+  gap: 16px;
+  padding: 12px 0 24px;
   text-align: center;
+  -webkit-overflow-scrolling: touch;
 }
 
 .complete-mascot {
@@ -850,11 +893,18 @@ h1, h2, p { margin-top: 0; }
    RESPONSIVE
 ════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-  .lesson-wrap        { padding: 16px 14px 32px; }
-  .start-wrap         { padding: 24px 18px 32px; }
-  .exercise-card      { padding: 18px; gap: 18px; }
-  .opt-btn            { height: 52px; }
-  .options-grid       { gap: 8px; }
+  .lesson-wrap   { padding: 16px 14px 16px; }
+  .start-wrap    { padding: 22px 18px 28px; }
+  .exercise-card { padding: 18px; gap: 16px; }
+  .opt-btn       { height: 50px; }
+  .options-grid  { gap: 8px; }
+}
+
+/* Short phones — shrink the hero ring so the start screen never overflows */
+@media (max-height: 680px) {
+  .hero-ring { width: min(160px, 42vw, 34vh); height: min(160px, 42vw, 34vh); }
+  .start-copy h1 { font-size: 1.8rem; }
+  .start-wrap { padding: 20px 18px 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

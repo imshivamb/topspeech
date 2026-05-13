@@ -195,22 +195,27 @@ function StartScreen({ onStart }) {
 function LessonBar({ progress, combo }) {
   return (
     <div className="lesson-bar">
-      <div
-        className="bar-track"
-        role="progressbar"
-        aria-valuenow={Math.round(progress)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Lesson progress"
-      >
-        <div className="bar-fill" style={{ width: `${progress}%` }} />
+      <div className="bar-meta">
+        <span className="bar-label">Rhotacism · Day 1</span>
+        {combo > 0 && (
+          <div key={combo} className={`combo-badge ${combo >= 3 ? "combo-badge--hot" : ""}`} aria-live="polite">
+            <Zap size={11} strokeWidth={3} />
+            {combo}× combo
+          </div>
+        )}
       </div>
-      {combo > 0 && (
-        <div key={combo} className={`combo-badge ${combo >= 3 ? "combo-badge--hot" : ""}`} aria-live="polite">
-          <Zap size={11} strokeWidth={3} />
-          {combo}×
+      <div className="bar-row">
+        <div
+          className="bar-track"
+          role="progressbar"
+          aria-valuenow={Math.round(progress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Lesson progress"
+        >
+          <div className="bar-fill" style={{ width: `${progress}%` }} />
         </div>
-      )}
+      </div>
     </div>
   );
 }
