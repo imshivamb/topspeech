@@ -38,11 +38,23 @@
   --r-card:       28px;
   --r-btn:        16px;
   --r-sm:         12px;
+  --screen-pad-x: clamp(14px, 5vw, 22px);
+  --screen-pad-y: clamp(16px, 4vh, 28px);
+  --app-height:   100vh;
 
   font-family: "Nunito", "Plus Jakarta Sans", ui-rounded, system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+@supports (height: 100dvh) {
+  :root { --app-height: 100dvh; }
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
 /* ════════════════════════════════════════════════
@@ -53,6 +65,7 @@
 body {
   margin: 0;
   min-width: 320px;
+  height: var(--app-height);
   background: var(--bg);
   color: var(--ink);
   overflow: hidden;
@@ -74,8 +87,7 @@ h1, h2, p { margin-top: 0; }
    SHELL
 ════════════════════════════════════════════════ */
 .shell {
-  height: 100dvh;
-  height: 100vh;
+  height: var(--app-height);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -94,9 +106,11 @@ h1, h2, p { margin-top: 0; }
 .lesson-wrap {
   width: 100%;
   max-width: 430px;
-  height: 100dvh;
-  height: 100vh;
-  padding: 20px 16px 20px;
+  height: var(--app-height);
+  padding:
+    max(16px, env(safe-area-inset-top))
+    16px
+    max(16px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
 }
@@ -107,9 +121,11 @@ h1, h2, p { margin-top: 0; }
 .start-wrap {
   width: 100%;
   max-width: 420px;
-  height: 100dvh;
-  height: 100vh;
-  padding: 28px 22px 32px;
+  height: var(--app-height);
+  padding:
+    max(var(--screen-pad-y), env(safe-area-inset-top))
+    var(--screen-pad-x)
+    max(var(--screen-pad-y), env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -134,11 +150,12 @@ h1, h2, p { margin-top: 0; }
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: clamp(10px, 2.5vh, 24px) 0;
 }
 
 .hero-ring {
-  width: min(200px, 48vw, 38vh);
-  height: min(200px, 48vw, 38vh);
+  width: min(190px, 45vw, 30vh);
+  height: min(190px, 45vw, 30vh);
   border-radius: 50%;
   background: rgba(108, 77, 255, 0.07);
   display: grid;
@@ -161,12 +178,12 @@ h1, h2, p { margin-top: 0; }
 
 .start-copy {
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: clamp(8px, 1.8vh, 14px);
   flex-shrink: 0;
 }
 
 .start-copy h1 {
-  font-size: clamp(2.1rem, 8.5vw, 2.9rem);
+  font-size: clamp(1.9rem, 7.8vw, 2.65rem);
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 1.02;
@@ -185,7 +202,7 @@ h1, h2, p { margin-top: 0; }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: clamp(14px, 2.8vh, 20px);
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--ink-3);
@@ -289,7 +306,7 @@ h1, h2, p { margin-top: 0; }
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: clamp(10px, 2vh, 16px);
   flex-shrink: 0;
 }
 
@@ -356,8 +373,8 @@ h1, h2, p { margin-top: 0; }
     0 16px 48px rgba(24, 16, 60, 0.11);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 22px;
+  gap: clamp(14px, 2.8vh, 20px);
+  padding: clamp(18px, 4.6vw, 22px);
   animation: cardSlideIn 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: background 280ms ease, box-shadow 280ms ease;
   overflow: hidden;
@@ -417,7 +434,7 @@ h1, h2, p { margin-top: 0; }
 .card-prompt {
   font-size: 0.93rem;
   color: var(--ink-2);
-  line-height: 1.58;
+  line-height: 1.48;
   font-weight: 500;
   margin: 0;
 }
@@ -590,15 +607,14 @@ h1, h2, p { margin-top: 0; }
 .complete {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 12px 0 24px;
+  gap: clamp(9px, 1.9vh, 16px);
+  padding: clamp(6px, 1.3vh, 12px) 0 clamp(10px, 2.2vh, 24px);
   text-align: center;
-  -webkit-overflow-scrolling: touch;
 }
 
 .complete-mascot {
@@ -622,7 +638,7 @@ h1, h2, p { margin-top: 0; }
 }
 
 .complete .complete-copy h2 {
-  font-size: clamp(1.65rem, 6.5vw, 2.2rem);
+  font-size: clamp(1.45rem, 5.9vw, 2.05rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: var(--ink);
@@ -630,7 +646,7 @@ h1, h2, p { margin-top: 0; }
 }
 
 .complete .complete-copy p {
-  font-size: 0.88rem;
+  font-size: clamp(0.78rem, 2.8vw, 0.88rem);
   color: var(--ink-2);
   max-width: 32ch;
   margin: 0 auto;
@@ -648,7 +664,7 @@ h1, h2, p { margin-top: 0; }
   color: #92400E;
   font-size: 0.78rem;
   font-weight: 800;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 999px;
   box-shadow: 0 2px 12px rgba(245, 158, 11, 0.22);
 }
@@ -672,11 +688,11 @@ h1, h2, p { margin-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding: 16px 10px;
+  padding: clamp(10px, 2vh, 16px) 10px;
 }
 
 .stat-cell strong {
-  font-size: 1.55rem;
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
   font-weight: 900;
   color: var(--ink);
   letter-spacing: -0.04em;
@@ -708,7 +724,7 @@ h1, h2, p { margin-top: 0; }
   z-index: 1;
   background: var(--ink);
   border-radius: 20px;
-  padding: 16px 20px;
+  padding: clamp(12px, 2.2vh, 16px) 18px;
   text-align: left;
   width: 100%;
   color: #fff;
@@ -893,8 +909,18 @@ h1, h2, p { margin-top: 0; }
    RESPONSIVE
 ════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-  .lesson-wrap   { padding: 16px 14px 16px; }
-  .start-wrap    { padding: 22px 18px 28px; }
+  .lesson-wrap {
+    padding:
+      max(14px, env(safe-area-inset-top))
+      14px
+      max(14px, env(safe-area-inset-bottom));
+  }
+  .start-wrap {
+    padding:
+      max(18px, env(safe-area-inset-top))
+      18px
+      max(20px, env(safe-area-inset-bottom));
+  }
   .exercise-card { padding: 18px; gap: 16px; }
   .opt-btn       { height: 50px; }
   .options-grid  { gap: 8px; }
@@ -902,9 +928,59 @@ h1, h2, p { margin-top: 0; }
 
 /* Short phones — shrink the hero ring so the start screen never overflows */
 @media (max-height: 680px) {
-  .hero-ring { width: min(160px, 42vw, 34vh); height: min(160px, 42vw, 34vh); }
+  .hero-ring { width: min(150px, 40vw, 27vh); height: min(150px, 40vw, 27vh); }
+  .hero-ring {
+    box-shadow:
+      0 0 0 18px rgba(108,77,255,0.05),
+      0 0 0 34px rgba(108,77,255,0.03);
+  }
   .start-copy h1 { font-size: 1.8rem; }
   .start-wrap { padding: 20px 18px 24px; }
+  .lesson-meta { font-size: 0.76rem; margin-bottom: 14px; }
+  .btn--primary { height: 48px; }
+  .exercise-card h2 { font-size: 1.35rem; }
+  .card-prompt { font-size: 0.86rem; }
+  .readiness { padding: 12px 14px; }
+  .feedback-row { padding: 10px 12px; }
+  .complete-copy p { line-height: 1.4; }
+  .stats-row { border-radius: 18px; }
+  .stat-cell span { font-size: 0.6rem; }
+  .next-up span { margin-bottom: 3px; }
+}
+
+@media (max-height: 590px) {
+  .start-wrap { padding-top: max(14px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  .brand-chip { font-size: 0.62rem; padding: 5px 12px; }
+  .start-hero { padding: 6px 0; }
+  .hero-ring { width: min(118px, 34vw, 23vh); height: min(118px, 34vw, 23vh); }
+  .hero-ring {
+    box-shadow:
+      0 0 0 14px rgba(108,77,255,0.05),
+      0 0 0 26px rgba(108,77,255,0.03);
+  }
+  .mascot--lg { width: 78px; height: 72px; }
+  .start-copy h1 { font-size: 1.55rem; margin-bottom: 6px; }
+  .start-copy p { font-size: 0.88rem; }
+  .lesson-meta { gap: 7px; margin-bottom: 10px; }
+  .lesson-wrap { padding-top: max(12px, env(safe-area-inset-top)); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .lesson-bar { gap: 6px; margin-bottom: 8px; }
+  .exercise-card { gap: 10px; padding: 14px; border-radius: 22px; }
+  .card-type { font-size: 0.66rem; padding: 4px 9px; }
+  .exercise-card h2 { font-size: 1.18rem; margin-bottom: 7px; }
+  .card-prompt { font-size: 0.8rem; line-height: 1.38; }
+  .opt-btn { height: 44px; font-size: 0.88rem; }
+  .readiness { gap: 8px; padding: 10px 12px; }
+  .readiness-cue { font-size: 0.72rem; }
+  .feedback-icon { width: 32px; height: 32px; }
+  .feedback-text span { font-size: 0.7rem; }
+  .btn--compact { height: 38px; padding: 0 14px; font-size: 0.82rem; }
+  .complete { gap: 7px; padding-bottom: 8px; }
+  .complete .complete-copy h2 { font-size: 1.28rem; margin-bottom: 5px; }
+  .complete .complete-copy p { font-size: 0.74rem; }
+  .perfect-badge { font-size: 0.7rem; padding: 4px 10px; }
+  .stat-cell { padding: 8px 8px; }
+  .next-up { padding: 10px 14px; }
+  .complete .btn--primary { height: 46px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
