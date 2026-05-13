@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "vite build --base=/topspeech/ && gh-pages -d dist"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
