@@ -2,13 +2,13 @@
   "name": "TopSpeech Daily Lesson",
   "short_name": "TopSpeech",
   "description": "A daily rhotacism lesson prototype for mobile browsers.",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#fff7ed",
   "theme_color": "#0f766e",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
