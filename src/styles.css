@@ -613,7 +613,7 @@ h1, h2, p { margin-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: clamp(8px, 1.65vh, 14px);
-  padding: clamp(16px, 3vh, 26px) 0 clamp(8px, 1.8vh, 20px);
+  padding: clamp(24px, 4vh, 36px) 0 clamp(8px, 1.8vh, 20px);
   text-align: center;
 }
 
@@ -946,7 +946,7 @@ h1, h2, p { margin-top: 0; }
   .stats-row { border-radius: 18px; }
   .stat-cell span { font-size: 0.6rem; }
   .next-up span { margin-bottom: 3px; }
-  .complete { padding-top: 14px; }
+  .complete { padding-top: 20px; }
 }
 
 @media (max-height: 590px) {
@@ -975,7 +975,7 @@ h1, h2, p { margin-top: 0; }
   .feedback-icon { width: 32px; height: 32px; }
   .feedback-text span { font-size: 0.7rem; }
   .btn--compact { height: 38px; padding: 0 14px; font-size: 0.82rem; }
-  .complete { gap: 6px; padding-top: 12px; padding-bottom: 8px; }
+  .complete { gap: 6px; padding-top: 18px; padding-bottom: 8px; }
   .complete .complete-copy h2 { font-size: 1.28rem; margin-bottom: 5px; }
   .complete .complete-copy p { font-size: 0.74rem; }
   .perfect-badge { font-size: 0.7rem; padding: 4px 10px; }
